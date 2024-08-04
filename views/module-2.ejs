@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+  <body>
+    <%- include('layouts/navbar'); -%>
+
+      <!-- POPUP -->
+      <div class="popup" id="popup 1" class="popup 1" style="border-radius: 30px">
+
+
+        <!-- <button id="status-btn-1" style="margin-top: 14px">Incomplete</button> -->
+
+        <div class="sub-module-status-div">
+
+          <button id="close-btn-1" class="close-btn" onclick="document.getElementById('popup 1').style.display = 'none'; 
+                 document.getElementById('popupsidedark').style.display = 'none';">
+            X
+          </button>
+
+          <input type="checkbox" id="2ndM-sub-module-1" class="inp-cbx">
+          <p id="checkbox-message-1" class="checkbox-text">Incomplete</p>
+        </div>
+
+        <h2>INTRODUCTION</h2>
+
+        <p>
+          Money is power. Money runs this world. (idk why seems kinda lame) And the richest gold mine in
+          today’s world is the INTERNET! An average scammer makes around $65K a year. Cybercriminals utilise
+          hidden bitcoin miners, use botnets, infect computers with malware and bring in MILLIONS OF DOLLARS!
+          And not even the blackhats, but the white hat hackers bring in that dough through bug bounties,
+          testing, etc. All in all, if you know what to do and where to look, you can get that motion.
+
+          <br /><br />
+          To use the Internet, you should be aware of the people looking to take advantage of you and steal
+          your money!
+          <br /><br />
+          So, what are we waiting for?
+        </p>
+      </div>
+
+      <div class="popup" id="popup 2" class="popup 2" style="border-radius: 30px">
+        <div class="sub-module-status-div">
+
+          <button id="close-btn-2" class="close-btn" onclick="document.getElementById('popup 2').style.display = 'none'; 
+                 document.getElementById('popupsidedark').style.display = 'none';">
+            X
+          </button>
+
+          <input type="checkbox" id="2ndM-sub-module-2" class="inp-cbx">
+          <p id="checkbox-message-2" class="checkbox-text">Incomplete</p>
+        </div>
+        <h2>Scams and electronic economy</h2>
+        <p>
+
+        </p>
+      </div>
+
+      <div class="popup" id="popup 3" class="popup 3" style="border-radius: 30px">
+        <div class="sub-module-status-div">
+
+          <button id="close-btn-3" class="close-btn" onclick="document.getElementById('popup 3').style.display = 'none'; 
+                 document.getElementById('popupsidedark').style.display = 'none';">
+            X
+          </button>
+
+          <input type="checkbox" id="2ndM-sub-module-3" class="inp-cbx">
+          <p id="checkbox-message-3" class="checkbox-text">Incomplete</p>
+        </div>
+
+        <h2>How do they do it???</h2>
+        <p>
+
+        </p>
+      </div>
+      <!-- POPUP DARK (on left)-->
+      <div id="popupsidedark" class="popupsidedark"></div>
+
+      <!-- Resources -->
+      <div class="flex-container module-1" style="padding-bottom: 0px">
+        <div class="resource-list-div" style="padding-left: 30px; padding-top: 20px">
+          <h1>Introduction</h1>
+          <p id="2-submodule1btn" onclick="document.getElementById('popup 1').style.display = 'block'; 
+                   document.getElementById('popupsidedark').style.display = 'block';" style="padding-top: 45px">
+            Introduction
+          </p>
+          <br />
+          <p id="2-submodule2btn" onclick="document.getElementById('popup 2').style.display = 'block'; 
+                 document.getElementById('popupsidedark').style.display = 'block';">
+            Scams and electronic economy
+          </p>
+          <br />
+          <p id="2-submodule3btn" onclick="document.getElementById('popup 3').style.display = 'block';
+                   document.getElementById('popupsidedark').style.display = 'block';">
+            fdfffwe
+          </p>
+          <br />
+          <!-- <p onclick="/* document.getElementById('popup 1').style.display = 'block';
+                   document.getElementById('popupsidedark').style.display = 'block'; */">
+            Sub Module 4
+          </p> -->
+          <br />
+        </div>
+
+        <div class="quiz-div" style="border-left: 5px solid black">
+          <p id="moduleCompletionStatus"></p>
+          <h1>READY?</h1>
+          <a id="quiz-btn" class="button" onclick="window.location.href='/quiz-1';" style="--color: #ff1867">
+            Start Quiz?
+          </a>
+        </div>
+      </div>
+
+      <%- include('layouts/footer'); -%>
+  </body>
+
+  <script type="module">
+
+    // Attach event listener to the checkboxes to save their states -- ln 119 to 124, ln 162 to 170 -- CODE FROM https://stackoverflow.com/questions/76801414/how-can-i-retain-my-checkbox-status-even-if-i-refresh-the-page
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', saveCheckboxStates);
+
+    });
+
+    // Load checkbox states on page load
+    document.addEventListener('DOMContentLoaded', loadCheckboxStates);
+    window.addEventListener("load", (e) => {
+      isChecked("2ndM-sub-module-1", "checkbox-message-1");
+      isChecked("2ndM-sub-module-2", "checkbox-message-2");
+      isChecked("2ndM-sub-module-3", "checkbox-message-3");
+    })
+
+    function isChecked(checkboxID, checkboxMessage,) {
+      if (document.getElementById(checkboxID).checked) {
+        document.getElementById(checkboxMessage).textContent = "Completed";
+        console.log(true)
+      } else {
+        document.getElementById(checkboxMessage).textContent = "Incomplete";
+        console.log(false)
+      }
+    }
+
+    // saves the checkbox statuses in local storage
+    function saveCheckboxStates() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        if (storageAvailable("localStorage")) {
+          //LOCAL STORAGE IS AVAILABLE
+          localStorage.setItem(checkbox.id, checkbox.checked);
+          isChecked("2ndM-sub-module-1", "checkbox-message-1");
+          isChecked("2ndM-sub-module-2", "checkbox-message-2");
+          isChecked("2ndM-sub-module-3", "checkbox-message-3");
+        } else {
+          //LOCAL STORAGE IS NOT AVAILABLE
+          console.log("ERROR! NO SPACE IN LOCALSTORAGE!");
+        }
+      })
+    }
+
+    // function to load the checkbox statuses on reload
+    function loadCheckboxStates() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        const savedState = localStorage.getItem(checkbox.id);
+        if (savedState !== null) {
+          checkbox.checked = savedState === 'true';
+        }
+      });
+    }
+
+    // checking the storage of local storage
+    function storageAvailable(type) {
+      let storage;
+      try {
+        storage = window[type];
+        const x = "__storage_test__";
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+      } catch (e) {
+        return (
+          e instanceof DOMException &&
+          // everything except Firefox
+          (e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === "QuotaExceededError" ||
+            // Firefox
+            e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+          // acknowledge QuotaExceededError only if there's something already stored
+          storage &&
+          storage.length !== 0
+        );
+      }
+    }
+  </script>
+
+</html>

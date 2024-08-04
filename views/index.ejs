@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+  <body>
+    <%- include('layouts/navbar'); -%>
+
+      <!--  main home div -->
+      <div class="main-home-div">
+        <h1>Basic Cyber Safety</h1>
+        <p style="font-size: 25px">
+          “ ... every little difference may become a big one if it is insisted
+          on.” - Vladimir Lenin
+        </p>
+      </div>
+
+      <div id="module-home-div" class="module-home-div">
+        <a name="modules"></a>
+        <div style="display: flex;">
+          <h1>Modules</h1>
+          <a href="/" style="position: relative; padding-left: 10px; color: rgb(160, 42, 200);">back to top</a>
+        </div>
+
+        <div class="flex-container 1">
+          <div class="flex-item" onclick="window.location.href='/module-1';" style="cursor: pointer;">
+            <img src="/images/module-1-home-page.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+            <br>
+            <p class="module-name">Keeping your identity safe!</p>
+          </div>
+          <div class="flex-item" onclick="window.location.href='/module-2';" style="cursor: pointer"><img
+              src="/images/module-2-home-page.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+            <br>
+            <p class="module-name">Internet markets and buyer awareness</p>
+          </div>
+          <div class="flex-item" onclick="window.location.href='/module-3';" style="cursor: pointer"><img
+              src="/images/under-construction-picture.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+            <br>
+            <p class="module-name"></p>
+          </div>
+        </div>
+
+        <div class="flex-container 2">
+          <div class="flex-item">
+            <img src="/images/under-construction-picture.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+          </div>
+          <div class="flex-item">
+            <img src="/images/under-construction-picture.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+          </div>
+          <div class="flex-item">
+            <img src="/images/under-construction-picture.png" alt=""
+              style="height: 60%; left: 50%; top: 50%; padding-top: 35px;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- faq div -->
+      <div class="faq-home-div">
+        <a name="faq"></a>
+        <div style="display: flex;">
+          <h1>Frequently Asked Questions (FAQ)</h1>
+          <a href="/" style="position: relative; padding-left: 15px; color: rgb(160, 42, 200);">back to top</a>
+        </div>
+        <p style="padding-left: 50px;">
+        <p style="color: green;">Will this website help me in staying safe online?</p>
+        <p>Yes! This website will inform you about the dangers of the online world, and educate you about how to
+          successfully protect yourself, while also not impeding yourself!
+        </p>
+        <br>
+        <p style="color: green;">How do I use the website?</p>
+        <p>Click on any module of the topic you want to learn more about. The module contains multiple sub-modules.
+          Whenever done reading, press the COMPLETED button to mark it as complete. If ready, complete the quiz!</p>
+        <br>
+        <p style="color: green;">Is my progress saved?</p>
+        <p style="padding-bottom: 150px;">Yes! On clicking the COMPLETED button, your progress will be saved! No
+          cookies, no login, just a simple click
+          of a button.</p>
+        </p>
+      </div>
+
+      <%- include('layouts/footer'); -%>
+  </body>
+
+  <script></script>
+
+</html>

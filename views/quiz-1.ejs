@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+  <body>
+    <%- include('layouts/navbar'); -%>
+
+
+
+      <div class="quiz-page-background">
+        <h1 style="padding-top: 70px;">
+          Answer the following questions by clicking on either "TRUE" or "FALSE"!
+        </h1>
+
+        <div id="questionbox" class="item clearfix"
+          style="margin: 0 48px 0 48px; padding-top: 60px; padding-bottom: 40px; background-color: transparent; border: 0;">
+          <span id="questiontext" style="line-height: 4rem;">
+          </span>
+          <br><br>
+          <button id="checktrue" style="margin: 0 20px 0 20px;">True</button>
+          <button id="checkfalse">False</button>
+        </div>
+
+        <!-- <div id="answerbox" style="padding-left: 20px;">
+          <button id="checktrue">1</button>
+          <button id="checkfalse">2</button>
+        </div> -->
+
+        <div id="questionresponse" class="hide" style="margin-left: 48px; margin-right: 48px;"></div>
+
+        <button id="nextquestion" class="hide pull-right clearfix" style="margin: 30px 0 0 45px;">
+
+          <span class="button__text">Next Question</span>
+        </button>
+        <button id="reset" class="pull-right hide clearfix">Quiz completed! Go back to home?</button>
+      </div>
+
+
+      <%- include('layouts/footer'); -%>
+  </body>
+
+  <script type="module">
+    var currentquestion = 0;
+
+    // array with all questions
+    var questions = [
+      {
+        question: "'My identity is not worth stealing!'",
+        response:
+          "Attackers are smart, and they seek the easiest path to their ultimate target. Often, that easiest path runs through your computer is YOU! As they say, data is the new gold!",
+        answer: false,
+      },
+      {
+        question:
+          "Phishing emails are easy to detect! They are very obvious and are easy to avoid...",
+        response:
+          "A lot of people believe that they can easily tell when they're being phished through email. But more and more often, scammers are crafting messages that appear to be from a legitimate source, such as your bank or your Amazon or eBay account, complete with a full page of images and icons from those sites duplicating a genuine email—but secretly redirecting an unsuspecting user to another site.",
+        answer: false,
+      },
+      {
+        question:
+          "Is https://local-news.com a secure website???",
+        response:
+          "Yes it is! The prefix 'https:' indicates that the data sent between the client and website is encrypted and the website is secure!",
+        answer: true,
+      },
+      {
+        question:
+          "I took a sneak peek at what my sister was doing, and found out she was making her very first Chem LibreOne account! (She's 8 years old) She puts her password as 'il0veun1cornz%1234'. Is this a strong password?",
+        response:
+          "Yes it is! The password utilizes special chracters, numbers, and the 3 levels of the alphabets rows in the QWERTY keyboard. Hence, it is a strong password!",
+        answer: true,
+      },
+    ];
+
+    (function () {
+      fnReset(); //call reset on document ready
+
+      document
+        .getElementById("nextquestion")
+        .addEventListener("click", function (event) {
+          fnCheck();
+        });
+
+      document
+        .getElementById("checktrue")
+        .addEventListener("click", function (event) {
+          fnCheck(true);
+        });
+      document
+        .getElementById("checkfalse")
+        .addEventListener("click", function (event) {
+          fnCheck(false);
+        });
+      document
+        .getElementById("nextquestion")
+        .addEventListener("click", function (event) {
+          fnNext();
+        });
+      document
+        .getElementById("reset")
+        .addEventListener("click", function (event) {
+          window.location.href = '/#modules'
+        });
+    })();
+
+    // provides a clean slate for everything to display
+    function fnReset() {
+      document.getElementById("questionresponse").classList.add("hide");
+      document.getElementById("nextquestion").classList.add("hide");
+      document.getElementById("reset").classList.add("hide");
+      document.getElementById("questionbox").classList.remove("hide");
+      currentquestion = 0;
+      document.getElementById("questiontext").innerHTML =
+        questions[currentquestion].question;
+    }
+
+    //cycles to next question
+    function fnNext() {
+      document.getElementById("questionresponse").classList.add("hide");
+      if (currentquestion < questions.length - 1) {
+        currentquestion = currentquestion + 1;
+        document.getElementById("nextquestion").classList.add("hide");
+        document.getElementById("reset").classList.add("hide");
+      } else {
+        document.getElementById("nextquestion").classList.add("hide");
+        document.getElementById("questionbox").classList.add("hide");
+        document.getElementById("reset").classList.remove("hide");
+      }
+      document.getElementById("questionresponse").classList.add("hide");
+      document.getElementById("questiontext").innerHTML =
+        questions[currentquestion].question;
+    }
+
+    // answer part after clicking either true or false
+    function fnCheck(answer) {
+      document
+        .getElementById("questionresponse")
+        .classList.remove("correct", "incorrect");
+      var questionAnswer = questions[currentquestion].answer;
+      if (questionAnswer === answer) {
+        // show correct
+        document
+          .getElementById("questionresponse")
+          .classList.add("correct");
+        document.getElementById("questionresponse").innerHTML =
+          "You chose: ''" +
+          answer +
+          "'. The answer is '" +
+          questionAnswer +
+          "'. " +
+          questions[currentquestion].response;
+      } else {
+        // show incorrect
+        document
+          .getElementById("questionresponse")
+          .classList.add("incorrect");
+        document.getElementById("questionresponse").innerHTML =
+          "You chose: ''" +
+          answer +
+          "'. The answer is '" +
+          questionAnswer +
+          "'. " +
+          questions[currentquestion].response;
+      }
+      document.getElementById("questionresponse").classList.remove("hide");
+      document.getElementById("nextquestion").classList.remove("hide");
+    }
+  </script>
+
+</html>
